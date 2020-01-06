@@ -6,15 +6,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="">
         <meta name="author" content="">
-    
         <title>{{ config("app.name") }}</title>
-    
         <link rel="icon" href="{{ asset('favicon.ico') }}">
         <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-        <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     
         {{-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
     </head>
@@ -31,10 +28,12 @@
                         <a class="nav-link text-white" href="{{ url('/') }}">Home</a>
                         <div class="menu-selected"></div>
                     </li>
+{{--
                     <li class="nav-item">
                         <a class="nav-link text-white" target="_blank" href="#">Examples</a>
                         <div class=""></div>
                     </li>
+--}}
                 </ul>
             </div>
         </nav>
@@ -79,29 +78,66 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <small>Sponsored Content</small>
-                    <div class="w-100 h-100 bg-secondary border"></div>
+                    <div class="w-100 h-75 border"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-3">
+                <div class="col-6 col-md-3 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Do:</p>
+                            <p>Upload front-on portraits for best detection. Multple
+                            faces are supported.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-md-3 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Avoid:</p>
+                            <p>Portraits with tilted heads.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-md-3 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Avoid:</p>
+                            <p>Too many distracting background objects.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-md-3 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Don't:</p>
+                            <p>Upload non-portait photos such as pictures of objects
+                            or animals.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <small>Sponsored Content</small>
+                    <div class="w-100 border p-2">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget ultricies leo.
-Sed non metus ac tellus elementum imperdiet in non diam. Cras sollicitudin neque
-ac massa mattis, et dignissim augue dictum. Quisque ac suscipit risus, vel sodales
-lorem. Vivamus vulputate, nulla at aliquam tincidunt, erat lorem viverra nisi, id
-interdum erat est a dui. Morbi quis mollis urna. Nam consequat in diam et vulputate.
-Nam et dolor a augue suscipit varius.
+                            <p>Googlyizer is an experiment in facial detection using
+                            OpenCV.  It was created in 2015, prior to the rise of
+                            Instagram and Snapchat filters, but has since been eclipsed
+                            by technologies built in to various mobile apps.</p>
+                            <p>It uses Haar Cascades to detect faces and eyes and 
+                            will superimpose "filters" based on matched coordinates.
+                            It works best when uploading a front-on portrait with 
+                            minimal background objects.</p>
+                            <p>Uploaded photos are processed by the server and are 
+                            purged once the session has expired.</p>
                         </div>
                     </div>
                 </div>
@@ -123,72 +159,8 @@ Nam et dolor a augue suscipit varius.
                 </div>
             </div>
         </div>
-
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        <script>
-            $(function() {
-                var csrf = $("meta[name=csrf-token]").attr("content");
-                var form_data = new FormData();
-                var override = function(evt, callback) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
-                    callback();
-                }
-            
-                function read_url(input) {
-                    if (input[0] && input[0].files) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            $("#drop-zone").html('<img height="80%" src="' + e.target.result + '">');
-                        }
-                        reader.readAsDataURL(input[0].files[0]);
-                    }
-                }
-            
-                $("#googlyize-button").on("click", function() {
-                    form_data.append("_token", csrf);
-                    form_data.append("eye_type", $("#eye-type-input").val());
-                    $("#googly-eyes").attr("src", "/images/loading.gif");
-                    $("#googly-modal").modal("show");
-                    $.ajax({
-                        url: "/upload",
-                        type: "POST",
-                        dataType: "json",
-                        data: form_data,
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            if (response.result)
-                                $("#googly-eyes").attr("src", response.result);
-                            else
-                                $("#googly-eyes").attr("src", "/images/error.png");
-                        },
-                        error: function() {
-                            $("#googly-eyes").attr("src", "/images/error.png");
-                        },
-                    });
-                });
-            
-                $("#drop-zone").on("click", function() {
-                    $("#image-upload").click();
-                });
-            
-                $("#image-upload").change(function(){
-                    var files = $('#image-upload')[0].files[0];
-                    form_data.append("image", $("#image-upload")[0].files[0]);
-                    read_url($("#image-upload"));
-                });
-            
-                $(".eye-type").on("click", function() {
-                    $(".eye-type").removeClass("bg-gray");
-                    $(this).addClass("bg-gray");
-                    $("#eye-type-input").val($(this).data("id"));
-                });
-            
-            });
-        </script>
+        <script src="{{ asset('js/googlyizer.js') }}"></script>
     </body>
 </html>
-
-
