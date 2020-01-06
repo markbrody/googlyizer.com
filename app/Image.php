@@ -6,7 +6,7 @@ use Illuminate\Http\UploadedFile;
 
 class Image
 {
-    const MAX_SIZE = 10485760; // 10MB
+    const MAX_SIZE = 20971520; // 20MB
 
     protected $uploaded_file;
 
