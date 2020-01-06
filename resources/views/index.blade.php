@@ -81,13 +81,13 @@
                     <div class="w-100 h-75 border"></div>
                 </div>
             </div>
+{{--
             <div class="row">
                 <div class="col-6 col-md-3 mt-2">
                     <div class="card">
                         <div class="card-body">
                             <p>Do:</p>
-                            <p>Upload front-on portraits for best detection. Multple
-                            faces are supported.</p>
+                            <p>Upload front-on portraits for best detection. Multple faces are supported.</p>
                         </div>
                     </div>
                 </div>
@@ -111,12 +111,12 @@
                     <div class="card">
                         <div class="card-body">
                             <p>Don't:</p>
-                            <p>Upload non-portait photos such as pictures of objects
-                            or animals.</p>
+                            <p>Upload non-portait photos such as pictures of objects or animals.</p>
                         </div>
                     </div>
                 </div>
             </div>
+--}}
             <div class="row mt-4">
                 <div class="col-12">
                     <small>Sponsored Content</small>
@@ -135,7 +135,26 @@
                             <p>It uses Haar Cascades to detect faces and eyes and 
                             will superimpose "filters" based on matched coordinates.
                             It works best when uploading a front-on portrait with 
-                            minimal background objects.</p>
+                            minimal background objects.  Some tips on getting best
+                            results are:</p>
+                            <ul>
+                                <li>
+                                    Do: &nbsp;
+                                    Upload front-on portraits for best detection. Multple faces are supported.
+                                </li>
+                                <li>
+                                    Avoid: &nbsp;
+                                    Portraits with tilted heads.
+                                </li>
+                                <li>
+                                    Avoid: &nbsp;
+                                    Too many distracting background objects.
+                                </li>
+                                <li>
+                                    Don't: &nbsp;
+                                    Upload non-portait photos such as pictures of objects or animals.
+                                </li>
+                            </ul>
                             <p>Uploaded photos are processed by the server and are 
                             purged once the session has expired.</p>
                         </div>
@@ -162,5 +181,6 @@
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('js/googlyizer.js') }}"></script>
+        {!! GoogleAnalytics::show() !!}
     </body>
 </html>
