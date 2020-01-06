@@ -1,0 +1,48 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-gray {
+    background-color: #eee;
+}
+
+.menu-selected {
+    width: 0;
+    height: 0;
+    margin: auto;
+    border-right: solid 7px transparent;
+    border-left: solid 7px transparent;
+    border-bottom: solid 7px #eee;
+}
+
+.eye-type {
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.upload-drop-zone {
+    cursor: pointer;
+    height: 10rem;
+    line-height: 10rem;
+    border: 2px dashed rgba(0,0,0,.125);
+}
+
+.upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+}
+
+.upload-drop-zone {
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+}
+
